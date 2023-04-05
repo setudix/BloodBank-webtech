@@ -72,7 +72,8 @@ Fixed Navigation
       <a class="navbar-brand logo" href="index.html">
         <img loading="lazy" class="logo-default" style="height: 80px; width: 40px" src="{{ asset('frontend/homePage/images/blood_bank_logo.png') }}" alt="logo" />
         <img loading="lazy" class="logo-white" style="height: 90px; width: 60px" src="{{ asset('frontend/homePage/images/blood_bank_logo.png') }}" alt="logo" />
-        <p style="color: white">Blood Bank </p>
+        <p class="nav-item" style="color: red" style="font-weight: 800">Blood Bank </p>
+        
     </a>
       <!-- /logo -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
@@ -91,14 +92,7 @@ Fixed Navigation
               <li><a class="dropdown-item" href="onepage-slider.html">Onepage</a></li>
               <li><a class="dropdown-item" href="onepage-text.html">Onepage 2</a></li>
 
-              <li class="dropdown dropdown-submenu dropright">
-                <a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0501" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sub Menu  <i class="tf-ion-chevron-down"></i></a>
-
-                <ul class="dropdown-menu" aria-labelledby="dropdown0501">
-                  <li><a class="dropdown-item" href="index.html">Submenu 01</a></li>
-                  <li><a class="dropdown-item" href="index.html">Submenu 02</a></li>
-                </ul>
-              </li>
+              
             </ul>
           </li>
           <li class="nav-item ">
@@ -231,7 +225,10 @@ Start About Section
     </div> <!-- end container -->
   </div> --}}
   <div class="footer-bottom">
-    <h5>&copy; Copyright 2023. All rights reserved.</h5>
+    <h5>&copy; Copyright 2023.</h5><br>
+    <h6>Dipshikha Das: BSSE1218</h6><br>
+    <h6>Mohammad Momenuzzaman: BSSE1227</h6><br>
+    <h6>Arnab Banik: BSSE1230</h6><br>
     {{-- <h6>Design and Developed by <a href="https://themefisher.com/">Themefisher</a></h6> --}}
   </div>
 </footer> <!-- end footer -->
