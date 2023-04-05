@@ -62,8 +62,8 @@ Fixed Navigation
 <header class="navigation fixed-top">
     <div class="nav-item" style="position: relative;">
         {{-- <button class ="btn btn-primary" style="position: absolute; right: 0"> Login </button> --}}
-        <a class="nav-link" style="position: absolute; right: 5%; font-weight:bold; font-size:large; text-decoration:underline" href="">Login</a>
-        <a class="nav-link" style="position: absolute; right: 0%; font-weight:bold; font-size:large; text-decoration:underline" href="">Register</a>
+        <a class="nav-link" style="position: absolute; right: 5%; font-weight:bold; font-size:large; text-decoration:underline" href="{{route('login')}}">Login</a>
+        <a class="nav-link" style="position: absolute; right: 0%; font-weight:bold; font-size:large; text-decoration:underline" href="{{route('register')}}">Register</a>
     </div>
   <div class="container">
     <!-- main nav -->
