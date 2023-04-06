@@ -15,85 +15,63 @@ class DonorListController extends Controller
         return view('donors');
     }
 
-    public function view(Request $request)
+
+    // public function filterUsers(Request $request)
+    // {
+    //     dd($request);
+
+    //     $allZilla = Zilla::orderBy('name')->get();
+    //     $allThana = Thana::all();
+
+    //     $selectedZilla = $request->input('zilla');
+    //     $selectedThana = $request->input('thana');
+
+    //     $users = $this->getUsers($selectedZilla, $selectedThana);
+
+
+    //     // if (!$selectedThana && !$selectedThana){
+    //     //     $users = User::with(['zilla', 'thana'])->get();
+    //     // }
+
+    //     return view('donors', compact('users','allZilla','allThana'));
+    // }
+
+    private function getUsers($selectedZilla = null, $selectedThana = null)
     {
-        // $users = DB::table('users')
-        //     ->join('zillas', 'zillas.id', '=', 'zilla_id')
-        //     ->join('thanas', 'thanas.id', '=', 'thana_id')
-        //     ->select('users.*', 'zillas.name as zilla', 'thanas.name as thana' )
-        //     ->get();
+        $query = User::with(['zilla', 'thana']);
 
-        $users = User::query();
-
-        $zillaId = $request->input('zilla_id');
-        $thanaId = $request->input('thana_id');
-    
-        if (!empty($zillaId)) {
-            $users->whereHas('thana', function ($query) use ($zillaId) {
-                $query->where('zilla_id', $zillaId);
-            });
-        }
-    
-        if (!empty($thanaId)) {
-            $users->where('thana_id', $thanaId);
+        if ($selectedZilla && $selectedThana) {
+            $query->where('zilla_id', $selectedZilla)
+                ->where('thana_id', $selectedThana);
+        } else if ($selectedZilla) {
+            $query->where('zilla_id', $selectedZilla);
+        } else if ($selectedThana) {
+            $query->where('thana_id', $selectedThana);
         }
 
-        // $users = User::with(['zilla', 'thana'])->get();
-
-        return view('donors', compact('users'));
-    }
-
-    public function filter(Request $request)
-    {
-        $zillas = Zilla::query();
-
-        $zillaId = $request->input('zilla_id');
-        $thanaId = $request->input('thana_id');
-
-        if (!empty($zillaId)) {
-            $zillas->where('zilla_id', $zillaId);
-        }
-
-        if (!empty($thanaId)) {
-            $zillas->where('thana_id', $thanaId);
-        }
-
-        $zillas = $zillas->with(['thana'])->get();
-
-        return view('donors', compact('zillas'));
+        return $query->get();
     }
 
     public function filterUsers(Request $request)
     {
         $allZilla = Zilla::orderBy('name')->get();
         $allThana = Thana::all();
+        $selectedZilla = $request->input('zilla_id');
 
-        $selectedZilla = $request->input('zilla');
-        $selectedThana = $request->input('thana');
-        
-        $users = $this->getUsers($selectedZilla, $selectedThana);
-        
-        
-        // if (!$selectedThana && !$selectedThana){
-        //     $users = User::with(['zilla', 'thana'])->get();
-        // }
+        $query = User::with(['zilla', 'thana']);
 
-        return view('donors', compact('users','allZilla','allThana'));
-    }
-
-    private function getUsers($selectedZilla = null, $selectedThana = null)
-    {
-        $query = User::with(['zilla','thana']);
-        
-        if ($selectedZilla && $selectedThana) {
-            $query->where('zilla_id', $selectedZilla)
-                  ->where('thana_id', $selectedThana);
-        } else if ($selectedZilla) {
+        if ($selectedZilla) {
             $query->where('zilla_id', $selectedZilla);
-        } else if ($selectedThana) {
+        }
+
+        $selectedThana = $request->input('thana_id');
+
+        if ($selectedThana) {
             $query->where('thana_id', $selectedThana);
         }
-        
-        return $query->get();
+
+        $users = $query->get();
+
+        return view('donors', compact('users', 'allZilla', 'allThana','selectedZilla', 'selectedThana'));
     }
 }

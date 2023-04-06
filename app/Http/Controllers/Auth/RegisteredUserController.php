@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'blood_type' => ['required', 'string', Rule::in(['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'])],
+            'blood_type' => ['required', 'string'],
             'zilla_id' => ['required'],
             'thana_id' => ['required'],
         ]);
@@ -52,9 +52,10 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'zilla_id' => $request->zilla_id,
             'thana_id' => $request->thana_id,
+            'blood_type' => $request->blood_type,
         ]);
 
-        $user->blood_type = $validatedData['blood_type'];
+        // $user->blood_type = $validatedData['blood_type'];
 
 
         event(new Registered($user));
