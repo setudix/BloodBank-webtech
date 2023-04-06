@@ -50,14 +50,22 @@ class User extends Authenticatable
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:8|confirmed',
-        'blood_type' => 'required|string|in:A+,A-,B+,B-,O+,O-,AB+,AB-', 
+        'blood_type' => 'required',
     ];
-    
-    public function zilla(){
+
+    public function zilla()
+    {
         return $this->belongsTo(Zilla::class);
     }
 
-    public function thana(){
+    public function thana()
+    {
         return $this->belongsTo(Thana::class);
     }
+
+    public function bloodDonations()
+    {
+        return $this->hasMany(BloodDonation::class);
+    }
+
 }

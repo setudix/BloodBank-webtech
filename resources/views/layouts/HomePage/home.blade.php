@@ -7,7 +7,7 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Bingo | Responsive Multipurpose Parallax HTML5 Template</title>
+  <title>Blood Bank</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -62,14 +62,24 @@ Fixed Navigation
 <header class="navigation fixed-top">
     <div class="nav-item" style="position: relative;">
         {{-- <button class ="btn btn-primary" style="position: absolute; right: 0"> Login </button> --}}
+
+        @guest
+      
         <a class="nav-link" style="position: absolute; right: 5%; font-weight:bold; font-size:large; text-decoration:underline" href="{{route('login')}}">Login</a>
         <a class="nav-link" style="position: absolute; right: 0%; font-weight:bold; font-size:large; text-decoration:underline" href="{{route('register')}}">Register</a>
-    </div>
+        @endguest
+
+        @auth
+        <a class="nav-link" style="position: absolute; right: 0%; font-weight:bold; font-size:large; text-decoration:underline" href="{{route('dashboard')}}">Dashboard</a>
+          
+        @endauth
+      </div>
+
   <div class="container">
     <!-- main nav -->
     <nav class="navbar navbar-expand-lg navbar-light px-0">
       <!-- logo -->
-      <a class="navbar-brand logo" href="index.html">
+      <a class="navbar-brand logo" href="#">
         <img loading="lazy" class="logo-default" style="height: 80px; width: 40px" src="{{ asset('frontend/homePage/images/blood_bank_logo.png') }}" alt="logo" />
         <img loading="lazy" class="logo-white" style="height: 90px; width: 60px" src="{{ asset('frontend/homePage/images/blood_bank_logo.png') }}" alt="logo" />
         <p class="nav-item" style="color: red" style="font-weight: 800">Blood Bank </p>
@@ -82,12 +92,12 @@ Fixed Navigation
       </button>
 
       <div class="collapse navbar-collapse" id="navigation">
-        <ul class="navbar-nav ml-auto text-center">
+        {{-- <ul class="navbar-nav ml-auto text-center">
           <li class="nav-item dropdown active">
             <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Homepage <i class="tf-ion-chevron-down"></i>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            </a> --}}
+            {{-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="index.html">Homepage</a></li>
               <li><a class="dropdown-item" href="onepage-slider.html">Onepage</a></li>
               <li><a class="dropdown-item" href="onepage-text.html">Onepage 2</a></li>
@@ -134,7 +144,7 @@ Fixed Navigation
             </ul>
           </li>
         </ul>
-      </div>
+      </div> --}}
     </nav>
     <!-- /main nav -->
   </div>
@@ -156,11 +166,11 @@ Welcome Slider
  					</p>
  					<ul class="list-inline wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".7s">
  						<li class="list-inline-item">
- 							<a data-scroll href="#services" class="btn btn-main">Explore Us</a>
+ 							<a data-scroll href="{{route('donor-list')}}" class="btn btn-main">Donor List</a>
  						</li>
- 						<li class="list-inline-item">
+ 						{{-- <li class="list-inline-item">
  							<a data-scroll href="#team" class="btn btn-transparent">Learn More</a>
- 						</li>
+ 						</li> --}}
  					</ul>
  				</div>
  			</div>
