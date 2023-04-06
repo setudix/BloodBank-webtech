@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Zilla extends Model
 {
     use HasFactory;
+
+    public function users(){
+        return $this->hasMany(User::class);
+    }
+
+    public function thanas(){
+        return $this->hasMany(Thana::class);
+    }
 }
